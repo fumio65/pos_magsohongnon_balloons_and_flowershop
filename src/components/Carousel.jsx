@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import profiles from "../data/profiles";
+import profiles from "../data/profiles"; // Ensure the path is correct
 
 const DRAG_SPEED = 1.5;
 const NUM_COPIES = 3;
-const CARD_GAP = 20;
 
 function duplicateProfiles(data, copies) {
   let arr = [];
@@ -14,29 +13,34 @@ function duplicateProfiles(data, copies) {
 export default function Carousel() {
   const parentRef = useRef(null);
   const [allProfiles, setAllProfiles] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(profiles.length);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  useEffect(() => {
-    setAllProfiles(duplicateProfiles(profiles, NUM_COPIES));
-  }, []);
-
-  useEffect(() => {
-    if (!parentRef.current) return;
-  
-    const card = parentRef.current.querySelectorAll(".profile-card")[currentIndex];
+  // Helper to center a card using bounding rects (accounts for scaling)
+  const centerCard = (idx) => {
+    const cards = parentRef.current.querySelectorAll(".profile-card");
+    const card = cards[idx];
     if (card) {
-      const cardRect = card.getBoundingClientRect(); // Get the actual size of the card
-      const parentRect = parentRef.current.getBoundingClientRect(); // Get the parent container size
-  
-      // Calculate the scroll position to center the card
-      const scrollLeft =
-        card.offsetLeft - parentRef.current.offsetWidth / 2 + card.offsetWidth / 2;
-  
-      parentRef.current.scrollTo({
-        left: scrollLeft,
+      const cardRect = card.getBoundingClientRect();
+      const parentRect = parentRef.current.getBoundingClientRect();
+      const cardCenter = cardRect.left + cardRect.width / 2;
+      const parentCenter = parentRect.left + parentRect.width / 2;
+      const scrollOffset = cardCenter - parentCenter;
+      parentRef.current.scrollBy({
+        left: scrollOffset,
         behavior: "smooth",
       });
     }
+  };
+
+  useEffect(() => {
+    setAllProfiles(duplicateProfiles(profiles, NUM_COPIES));
+  }, [profiles]);
+
+  // Center the selected card on mount and when currentIndex changes
+  useEffect(() => {
+    if (!parentRef.current || allProfiles.length === 0) return;
+    centerCard(currentIndex);
+    // eslint-disable-next-line
   }, [currentIndex, allProfiles.length]);
 
   const isDragging = useRef(false);
@@ -61,14 +65,8 @@ export default function Carousel() {
   };
 
   const handleCardClick = (idx) => {
-    const card = parentRef.current.querySelectorAll(".profile-card")[idx];
-    if (card) {
-      parentRef.current.scrollTo({
-        left: card.offsetLeft - parentRef.current.offsetWidth / 2 + card.offsetWidth / 2,
-        behavior: "smooth",
-      });
-      setCurrentIndex(idx);
-    }
+    centerCard(idx);
+    setCurrentIndex(idx);
   };
 
   return (
@@ -86,7 +84,7 @@ export default function Carousel() {
           {allProfiles.map((p, idx) => (
             <div
               key={idx}
-              className={`profile-card flex-shrink-0 w-52 border border-gray-200 rounded-md p-4 text-center bg-white ${
+              className={`profile-card flex-shrink-0 w-52 border border-gray-200 rounded-md p-4 text-center bg-white transform transition-transform duration-300 ${
                 idx === currentIndex ? "scale-105 shadow-lg" : ""
               }`}
               onClick={() => handleCardClick(idx)}
