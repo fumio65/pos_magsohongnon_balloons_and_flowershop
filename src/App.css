@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+* {
+  font-family: sans-serif;
+}
+
+.center-dev {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@theme {
+  --color-side-text: #828487;
+  --color-active: #44CF6C;
+  --color-border: #E4E4E4
+}
