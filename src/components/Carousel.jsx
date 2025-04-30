@@ -1,103 +1,160 @@
-import React, { useEffect, useRef, useState } from "react";
-import profiles from "../data/profiles"; // Ensure the path is correct
+import React, { useEffect, useRef, useState, useLayoutEffect } from "react";
 
-const DRAG_SPEED = 1.5;
+import profiles from "../data/profiles";
+
+const CARD_WIDTH = 208;
+const GAP = 20;
+const CARD_FULL_WIDTH = CARD_WIDTH + GAP;
 const NUM_COPIES = 3;
-
-function duplicateProfiles(data, copies) {
-  let arr = [];
-  for (let i = 0; i < copies; i++) arr = arr.concat(data);
-  return arr;
-}
+const MIDDLE = profiles.length * Math.floor(NUM_COPIES / 2);
 
 export default function Carousel() {
   const parentRef = useRef(null);
-  const [allProfiles, setAllProfiles] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(MIDDLE);
+  const scrollRafRef = useRef(null); // Ref to store requestAnimationFrame ID for scroll settling
 
-  // Helper to center a card using bounding rects (accounts for scaling)
-  const centerCard = (idx) => {
-    const cards = parentRef.current.querySelectorAll(".profile-card");
-    const card = cards[idx];
-    if (card) {
-      const cardRect = card.getBoundingClientRect();
-      const parentRect = parentRef.current.getBoundingClientRect();
-      const cardCenter = cardRect.left + cardRect.width / 2;
-      const parentCenter = parentRect.left + parentRect.width / 2;
-      const scrollOffset = cardCenter - parentCenter;
-      parentRef.current.scrollBy({
-        left: scrollOffset,
-        behavior: "smooth",
+  const loopProfiles = [...profiles, ...profiles, ...profiles];
+  const singleListLength = profiles.length;
+  const totalLength = loopProfiles.length;
+
+  // Function to detect and update center card
+  const detectCenterCard = () => {
+    const parent = parentRef.current;
+    if (!parent) return;
+
+    const parentCenter = parent.offsetWidth / 2;
+    const children = parent.querySelectorAll(".profile-card");
+    let closestIdx = 0;
+    let closestDistance = Infinity;
+
+    children.forEach((child, idx) => {
+      const box = child.getBoundingClientRect();
+      // Calculate the center of the card relative to the parent's left edge
+      const cardCenter = box.left + box.width / 2 - parent.getBoundingClientRect().left;
+      const distance = Math.abs(parentCenter - cardCenter);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIdx = idx;
+      }
+    });
+
+    setCurrentIndex(closestIdx);
+  };
+
+  // Ensure that the scroll position and center detection are done after mount
+  useLayoutEffect(() => {
+    const parent = parentRef.current;
+    if (!parent) return;
+
+    // Set the initial scroll position to the middle of the profiles array copy
+    const initialScrollLeft = singleListLength * CARD_FULL_WIDTH;
+    parent.scrollLeft = initialScrollLeft;
+
+    // Use requestAnimationFrame to wait for the browser to process the scroll
+    requestAnimationFrame(() => {
+      // Use another requestAnimationFrame to wait for the subsequent paint.
+      requestAnimationFrame(() => {
+        detectCenterCard();
       });
-    }
-  };
+    });
+  }, [singleListLength]); // Dependency on singleListLength
 
   useEffect(() => {
-    setAllProfiles(duplicateProfiles(profiles, NUM_COPIES));
-  }, [profiles]);
+    const parent = parentRef.current;
+    if (!parent) return;
 
-  // Center the selected card on mount and when currentIndex changes
-  useEffect(() => {
-    if (!parentRef.current || allProfiles.length === 0) return;
-    centerCard(currentIndex);
-    // eslint-disable-next-line
-  }, [currentIndex, allProfiles.length]);
+    const handleScroll = () => {
+      const scrollLeft = parent.scrollLeft;
+      const maxScrollLeft = parent.scrollWidth - parent.clientWidth;
 
-  const isDragging = useRef(false);
-  const startX = useRef(0);
-  const scrollStart = useRef(0);
+      // Infinite scroll logic
+      // Add a small tolerance (e.g., 1 pixel) for floating point inaccuracies
+      if (scrollLeft <= 1) {
+        parent.scrollLeft = scrollLeft + singleListLength * CARD_FULL_WIDTH;
+      } else if (scrollLeft >= maxScrollLeft - 1) {
+        parent.scrollLeft = scrollLeft - singleListLength * CARD_FULL_WIDTH;
+      }
 
-  const onMouseDown = (e) => {
-    isDragging.current = true;
-    startX.current = e.pageX;
-    scrollStart.current = parentRef.current.scrollLeft;
-    parentRef.current.style.cursor = "grabbing";
-  };
+      // Detect the center card after a small delay or on scroll settle
+      if (!scrollRafRef.current) { // Only detect if not currently in a smooth scroll check loop
+        // Set a slight delay for detecting center card after the scroll event
+        scrollRafRef.current = requestAnimationFrame(() => {
+          detectCenterCard();
+          scrollRafRef.current = null;
+        });
+      }
+    };
 
-  const onMouseMove = (e) => {
-    if (!isDragging.current) return;
-    parentRef.current.scrollLeft = scrollStart.current - (e.pageX - startX.current) * DRAG_SPEED;
-  };
+    // Use passive: true for better scroll performance
+    parent.addEventListener("scroll", handleScroll, { passive: true });
 
-  const onMouseUp = () => {
-    isDragging.current = false;
-    parentRef.current.style.cursor = "grab";
-  };
+    return () => {
+      parent.removeEventListener("scroll", handleScroll);
+      // Clean up any pending scroll settling check
+      if (scrollRafRef.current) {
+        cancelAnimationFrame(scrollRafRef.current);
+      }
+    };
+  }, [singleListLength]); // Dependency on singleListLength
 
-  const handleCardClick = (idx) => {
-    centerCard(idx);
-    setCurrentIndex(idx);
+  const handleCardClick = (clickedIdx) => {
+    const parent = parentRef.current;
+    if (!parent) return;
+
+    const children = parent.querySelectorAll(".profile-card");
+
+    // Ensure the clicked index is valid
+    const targetCard = children[clickedIdx];
+    if (!targetCard) return;
+
+    // Perform the smooth scroll directly to the center of the clicked card
+    targetCard.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest", // Ensure it scrolls into view without causing unnecessary movement
+      inline: "center", // Align the card at the center
+    });
+
+    // After scrolling, detect the center card
+    const settleTimer = setTimeout(() => {
+      detectCenterCard();
+    }, 500); // Add a small delay to let the scroll settle before detecting the new center card
   };
 
   return (
     <div className="w-full max-w-3xl mx-auto py-8">
       <div
         ref={parentRef}
-        className="bg-white rounded-lg shadow-md overflow-x-auto scrollbar-hide cursor-grab select-none"
-        style={{ WebkitOverflowScrolling: "touch" }}
-        onMouseDown={onMouseDown}
-        onMouseMove={onMouseMove}
-        onMouseUp={onMouseUp}
-        onMouseLeave={onMouseUp}
+        className="bg-white rounded-lg shadow-md overflow-x-auto scrollbar-hide select-none snap-x"
+        style={{ WebkitOverflowScrolling: "touch" }} // For smoother scrolling on iOS
       >
-        <div className="flex gap-5 px-5 py-6">
-          {allProfiles.map((p, idx) => (
-            <div
-              key={idx}
-              className={`profile-card flex-shrink-0 w-52 border border-gray-200 rounded-md p-4 text-center bg-white transform transition-transform duration-300 ${
-                idx === currentIndex ? "scale-105 shadow-lg" : ""
-              }`}
-              onClick={() => handleCardClick(idx)}
-            >
-              <img
-                src={p.imageUrl}
-                alt={p.name}
-                className="w-20 h-20 rounded-full mx-auto mb-4 object-cover"
-              />
-              <div className="font-bold">{p.name}</div>
-              <div className="text-sm text-gray-500">{p.role}</div>
-            </div>
-          ))}
+        <div
+          className="flex gap-5 px-5 py-6"
+          style={{ width: CARD_FULL_WIDTH * totalLength }}
+        >
+          {loopProfiles.map((p, idx) => {
+            // Add snap-center to the card to work with snap-x on the parent
+            const isCenterCard = idx === currentIndex;
+            return (
+              <div
+                key={idx}
+                className={`profile-card flex-shrink-0 w-52 border border-gray-200 rounded-md p-4 text-center bg-white snap-center ${
+                  isCenterCard
+                    ? "scale-105 shadow-lg transition-transform duration-300 ease-in-out"
+                    : "transition-transform duration-300 ease-in-out"
+                }`}
+                onClick={() => handleCardClick(idx)}
+                style={{ cursor: "pointer", willChange: "transform" }} // Adding will-change to improve performance
+              >
+                <img
+                  src={p.imageUrl}
+                  alt={p.name}
+                  className="w-20 h-20 rounded-full mx-auto mb-4 object-cover"
+                />
+                <div className="font-bold">{p.name}</div>
+                <div className="text-sm text-gray-500">{p.role}</div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

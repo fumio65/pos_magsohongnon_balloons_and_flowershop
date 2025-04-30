@@ -1,11 +1,10 @@
 const profiles = [
-  { name: "Ruby Journey", role: "Cashier", imageUrl: "https://i.ibb.co/B62P14F/ruby-journey.png" },
-  { name: "Allyza Nebra", role: "Cashier", imageUrl: "https://i.ibb.co/Jj4P9xQ/allyza-nebra.png" },
-  { name: "Lhester Tornieno", role: "Owner", imageUrl: "https://i.ibb.co/yW97Z0S/lhester-tornieno.png" },
-  { name: "Rena Kane", role: "Manager", imageUrl: "https://i.ibb.co/Wn04KHS/rena-kane.png" },
-  { name: "Hermon Dado", role: "Cashier", imageUrl: "https://i.ibb.co/n81G16P/hermon-dado.png" },
-  { name: "Jane Doe", role: "Developer", imageUrl: "https://via.placeholder.com/80/0000FF/FFFFFF?text=JANE" },
-  { name: "John Smith", role: "Designer", imageUrl: "https://via.placeholder.com/80/FF0000/FFFFFF?text=JOHN" },
+  { name: "Ruby Journey", role: "Cashier", imageUrl: "/images/img-1.jpg" },
+  { name: "Allyza Nebra", role: "Cashier", imageUrl: "/images/img-2.jpg" },
+  { name: "Lhester Tornieno", role: "Owner", imageUrl: "/images/img-3.jpg" },
+  { name: "Rena Kane", role: "Manager", imageUrl: "/images/img-4.jpg" },
+  { name: "Hermon Dado", role: "Cashier", imageUrl: "/images/img-5.jpg" },
+  { name: "Jane Doe", role: "Developer", imageUrl: "/images/img-6.jpg" },
 ];
 
 export default profiles;
