@@ -20,9 +20,9 @@ export default function NotificationDropdown({ show, lotStock, noStock }) {
         <h3 className='text-sm font-bold'>Low Stock</h3>
       </div>
       {lotStock.map((item, idx) => (
-        <Link className='group flex items-center p-1 hover:bg-nav-hover transition duration-500 ease-in-out' to={item.to} key={idx}>
+        <Link className='flex items-center p-1 opacity-100 hover:opacity-50 transition duration-500 ease-in-out transform hover:scale-101' to={item.to} key={idx}>
           <img
-            className='h-14 opacity-100 group-hover:opacity-50 transition duration-500 ease-in-out'
+            className='h-14'
             src={item.image}
             alt="product"
           />
@@ -38,9 +38,10 @@ export default function NotificationDropdown({ show, lotStock, noStock }) {
         <h3 className='text-sm font-bold'>No Stock</h3>
       </div>
       {noStock.map((item, idx) => (
-        <Link className='group flex items-center p-1 hover:bg-nav-hover transition duration-500 ease-in-out' to={item.to} key={idx}>
+        <Link className='flex items-center p-1 opacity-100 hover:opacity-50 transition duration-300 ease-in-out transform hover:scale-101'
+         to={item.to} key={idx}>
           <img
-            className='h-14 opacity-100 group-hover:opacity-50 transition duration-500 ease-in-out'
+            className='h-14'
             src={item.image}
             alt="product"
           />

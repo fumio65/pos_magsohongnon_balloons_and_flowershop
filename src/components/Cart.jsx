@@ -32,9 +32,9 @@ function Cart({ className = ''}) {
             </div>
 
             <div className='flex justify-center gap-1 '>
-              <button className='border-2 h-8 w-8 font-bold bg-side-text rounded-md'>+</button>
-              <input className='border-2 w-16 text-center rounded-md' type="text" value={item.quantity} />
               <button className='border-2 h-8 w-8 font-bold bg-side-text rounded-md'>-</button>
+              <input className='border-2 w-16 text-center rounded-md' type="text" value={item.quantity} />
+              <button className='border-2 h-8 w-8 font-bold bg-side-text rounded-md'>+</button>
             </div>
           </div>
           
