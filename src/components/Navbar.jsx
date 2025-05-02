@@ -5,7 +5,7 @@ import NotificationDropdown from './NotificationDropdown'
 import UserDropdown from './UserDropdown'
 
 const navLinks = [
-  { to: "/home", icon: "/icons/home (active).svg", label: "Home" },
+  { to: "/home", icon: "/icons/home-(active).svg", label: "Home" },
   { to: "/products", icon: "/icons/products.svg", label: "Products" },
   { to: "/transactions", icon: "/icons/transactions.svg", label: "Transactions" },
   { to: "/reports", icon: "/icons/reports.svg", label: "Reports" },
