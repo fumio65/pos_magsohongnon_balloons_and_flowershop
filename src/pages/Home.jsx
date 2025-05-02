@@ -13,7 +13,7 @@ function Home() {
         className="grid flex-grow p-4 gap-4 h-full"
         style={{
           gridTemplateColumns: 'max-content auto auto',
-          gridTemplateRows: 'auto max-content auto',
+          gridTemplateRows: 'auto 1fr 1fr',
           gridTemplateAreas: `
             "sidebar search-bar cart"
             "sidebar product-grid cart"
