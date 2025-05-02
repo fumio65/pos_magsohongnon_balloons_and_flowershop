@@ -17,11 +17,11 @@ function Sidebar({ className = '' }) {
       {sidebarLinks.map((link) => (
         <button
           key={link.label}
-          className="flex flex-col items-center focus:outline-none"
+          className="group flex flex-col items-center focus:outline-none hover:cursor-pointer"
           onClick={() => setActive(link.label)}
           type="button"
         >
-          <div className={`p-1 rounded-xl hover:bg-side-hover transition duration-300 ${active === link.label ? 'bg-side-active' : ''}`}>
+          <div className={`p-1 rounded-xl group-hover:bg-side-hover transition duration-300 ${active === link.label ? 'bg-side-active' : 'hover:bg-side-hover'}`}>
             <img
               className='h-8'
               src={active === link.label ? link.icon : link.inactiveIcon}

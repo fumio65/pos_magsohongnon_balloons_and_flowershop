@@ -12,7 +12,7 @@ function Home() {
       <main
         className="grid flex-grow p-4 gap-4 h-full"
         style={{
-          gridTemplateColumns: 'max-content auto auto',
+          gridTemplateColumns: 'max-content auto 400px',
           gridTemplateRows: 'auto 1fr 1fr',
           gridTemplateAreas: `
             "sidebar search-bar cart"
