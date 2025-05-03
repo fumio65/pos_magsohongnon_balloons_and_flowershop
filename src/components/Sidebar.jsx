@@ -21,7 +21,7 @@ function Sidebar({ className = '' }) {
           onClick={() => setActive(link.label)}
           type="button"
         >
-          <div className={`p-1 rounded-xl group-hover:bg-side-hover transition duration-300 ${active === link.label ? 'bg-side-active' : 'hover:bg-side-hover'}`}>
+          <div className={`p-1 rounded-xl transition duration-300 ${active === link.label ? 'bg-side-active' : 'group-hover:bg-side-hover'}`}o>
             <img
               className='h-8'
               src={active === link.label ? link.icon : link.inactiveIcon}
