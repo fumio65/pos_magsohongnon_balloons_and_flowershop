@@ -4,10 +4,11 @@ import Sidebar from '../components/Sidebar.jsx'
 import SearchBar from '../components/SearchBar.jsx'
 import Cart from '../components/Cart.jsx'
 import Products from '../components/Products.jsx'
+import ProductSelection from '../components/ProductSelection.jsx'
 
 function Home() {
   return (
-    <div className='bg-background h-screen flex flex-col'>
+    <div className='relative bg-background h-screen flex flex-col'>
       <Navbar />
       <main
         className="grid flex-grow p-4 gap-4 h-full"
@@ -25,6 +26,7 @@ function Home() {
         <SearchBar />
         <Cart />
         <Products />
+        <ProductSelection />
       </main>
     </div>
   )

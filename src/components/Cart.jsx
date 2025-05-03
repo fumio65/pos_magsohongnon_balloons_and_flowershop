@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 
 const initialCartItems = [
-  { image: '/images/Metallic Balloon.png', name: 'Metallic Balloon', variation: '10" Green', quantity: 2, price: 250, total: 500, delete: '/icons/trash.svg' },
-  { image: '/images/Metallic Balloon.png', name: 'Metallic Balloon', variation: '10" red', quantity: 2, price: 250, total: 500, delete: '/icons/trash.svg' },
-  { image: '/images/Metallic Balloon.png', name: 'Standard Balloon', variation: '10" Green', quantity: 2, price: 250, total: 500, delete: '/icons/trash.svg' },
+  { image: '/images/UN•UW Balloons.png', name: 'UN•UW Balloons', variation: '10" Green', quantity: 2, price: 250, total: 500, delete: '/icons/trash.svg' },
+  { image: '/images/UN•UW Balloons.png', name: 'UN•UW Balloons', variation: '10" Green', quantity: 2, price: 250, total: 500, delete: '/icons/trash.svg' },
+  { image: '/images/UN•UW Balloons.png', name: 'UN•UW Balloons', variation: '10" Green', quantity: 2, price: 250, total: 500, delete: '/icons/trash.svg' },
+  { image: '/images/UN•UW Balloons.png', name: 'UN•UW Balloons', variation: '10" Green', quantity: 2, price: 250, total: 500, delete: '/icons/trash.svg' },
+
 ]
 
 function Cart({ className = '' }) {
@@ -42,7 +44,7 @@ function Cart({ className = '' }) {
       </div>
 
 
-      <div className='flex flex-col gap- max-h-[248px] overflow-y-scroll'>
+      <div className='flex flex-col gap-2 min-h-[248px] max-h-[248px] overflow-y-auto'>
         {cartItems.map((item, index) => (
           <React.Fragment key={index}>
             <div className='flex p-1'>

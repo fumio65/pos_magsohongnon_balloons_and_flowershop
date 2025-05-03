@@ -1,22 +1,19 @@
 import React from 'react'
+import ProductSelection from './ProductSelection' 
 
 const productGrid = [
-  { image: '/images/Metallic Balloon.png', name: 'Standard Balloon', price: '₱ 250', quantity: 10 },
-  { image: '/images/Metallic Balloon.png', name: 'Metallic Balloon', price: '₱ 250', quantity: 10 },
-  { image: '/images/Metallic Balloon.png', name: 'No/Letter Balloon', price: '₱ 250', quantity: 10 },
-  { image: '/images/Metallic Balloon.png', name: 'Bobo Balloon', price: '₱ 250', quantity: 10 },
-  { image: '/images/Metallic Balloon.png', name: 'Metallic Balloon', price: '₱ 250', quantity: 10 },
-  { image: '/images/Metallic Balloon.png', name: 'Metallic Balloon', price: '₱ 250', quantity: 10 },
-  { image: '/images/Metallic Balloon.png', name: 'Metallic Balloon', price: '₱ 250', quantity: 10 },
-  { image: '/images/Metallic Balloon.png', name: 'Metallic Balloon', price: '₱ 250', quantity: 10 },
-  { image: '/images/Metallic Balloon.png', name: 'Metallic Balloon', price: '₱ 250', quantity: 10 },
-  { image: '/images/Metallic Balloon.png', name: 'Metallic Balloon', price: '₱ 250', quantity: 10 },
-  { image: '/images/Metallic Balloon.png', name: 'Metallic Balloon', price: '₱ 250', quantity: 10 },
-  { image: '/images/Metallic Balloon.png', name: 'Metallic Balloon', price: '₱ 250', quantity: 10 },
-  { image: '/images/Metallic Balloon.png', name: 'Metallic Balloon', price: '₱ 250', quantity: 10 },
-  { image: '/images/Metallic Balloon.png', name: 'Metallic Balloon', price: '₱ 250', quantity: 10 },
-  { image: '/images/Metallic Balloon.png', name: 'Metallic Balloon', price: '₱ 250', quantity: 10 },
-  { image: '/images/Metallic Balloon.png', name: 'Metallic Balloon', price: '₱ 250', quantity: 10 },
+  { image: '/images/UN•UW Balloons.png', name: 'UN•UW Balloons', price: '₱ 250', quantity: 10, color: ['Gold',  'Red', "Blue", "Sky Blue", "Violet", "Yellow", "White", "Green", "Pastel Blue", "Pastel Pink", "Pastel Violet", "Pastel Yellow"], type: ["Metallic", "Chrome"], size: ['5"', '6"', '10"', '12"'] },  
+  { image: '/images/UN•UW Balloons.png', name: 'UN•UW Balloons', price: '₱ 250', quantity: 10, color: ['Gold',  'Red', "Blue", "Sky Blue", "Violet", "Yellow", "White", "Green", "Pastel Blue", "Pastel Pink", "Pastel Violet", "Pastel Yellow"], type: ["Metallic", "Chrome"], size: ['5"', '6"', '10"', '12"'] },  
+  { image: '/images/UN•UW Balloons.png', name: 'UN•UW Balloons', price: '₱ 250', quantity: 10, color: ['Gold',  'Red', "Blue", "Sky Blue", "Violet", "Yellow", "White", "Green", "Pastel Blue", "Pastel Pink", "Pastel Violet", "Pastel Yellow"], type: ["Metallic", "Chrome"], size: ['5"', '6"', '10"', '12"'] },  
+  { image: '/images/UN•UW Balloons.png', name: 'UN•UW Balloons', price: '₱ 250', quantity: 10, color: ['Gold',  'Red', "Blue", "Sky Blue", "Violet", "Yellow", "White", "Green", "Pastel Blue", "Pastel Pink", "Pastel Violet", "Pastel Yellow"], type: ["Metallic", "Chrome"], size: ['5"', '6"', '10"', '12"'] },  
+  { image: '/images/UN•UW Balloons.png', name: 'UN•UW Balloons', price: '₱ 250', quantity: 10, color: ['Gold',  'Red', "Blue", "Sky Blue", "Violet", "Yellow", "White", "Green", "Pastel Blue", "Pastel Pink", "Pastel Violet", "Pastel Yellow"], type: ["Metallic", "Chrome"], size: ['5"', '6"', '10"', '12"'] },  
+  { image: '/images/UN•UW Balloons.png', name: 'UN•UW Balloons', price: '₱ 250', quantity: 10, color: ['Gold',  'Red', "Blue", "Sky Blue", "Violet", "Yellow", "White", "Green", "Pastel Blue", "Pastel Pink", "Pastel Violet", "Pastel Yellow"], type: ["Metallic", "Chrome"], size: ['5"', '6"', '10"', '12"'] },  
+  { image: '/images/UN•UW Balloons.png', name: 'UN•UW Balloons', price: '₱ 250', quantity: 10, color: ['Gold',  'Red', "Blue", "Sky Blue", "Violet", "Yellow", "White", "Green", "Pastel Blue", "Pastel Pink", "Pastel Violet", "Pastel Yellow"], type: ["Metallic", "Chrome"], size: ['5"', '6"', '10"', '12"'] },  
+  { image: '/images/UN•UW Balloons.png', name: 'UN•UW Balloons', price: '₱ 250', quantity: 10, color: ['Gold',  'Red', "Blue", "Sky Blue", "Violet", "Yellow", "White", "Green", "Pastel Blue", "Pastel Pink", "Pastel Violet", "Pastel Yellow"], type: ["Metallic", "Chrome"], size: ['5"', '6"', '10"', '12"'] },  
+  { image: '/images/UN•UW Balloons.png', name: 'UN•UW Balloons', price: '₱ 250', quantity: 10, color: ['Gold',  'Red', "Blue", "Sky Blue", "Violet", "Yellow", "White", "Green", "Pastel Blue", "Pastel Pink", "Pastel Violet", "Pastel Yellow"], type: ["Metallic", "Chrome"], size: ['5"', '6"', '10"', '12"'] },  
+  { image: '/images/UN•UW Balloons.png', name: 'UN•UW Balloons', price: '₱ 250', quantity: 10, color: ['Gold',  'Red', "Blue", "Sky Blue", "Violet", "Yellow", "White", "Green", "Pastel Blue", "Pastel Pink", "Pastel Violet", "Pastel Yellow"], type: ["Metallic", "Chrome"], size: ['5"', '6"', '10"', '12"'] },  
+  { image: '/images/UN•UW Balloons.png', name: 'UN•UW Balloons', price: '₱ 250', quantity: 10, color: ['Gold',  'Red', "Blue", "Sky Blue", "Violet", "Yellow", "White", "Green", "Pastel Blue", "Pastel Pink", "Pastel Violet", "Pastel Yellow"], type: ["Metallic", "Chrome"], size: ['5"', '6"', '10"', '12"'] },  
+  { image: '/images/UN•UW Balloons.png', name: 'UN•UW Balloons', price: '₱ 250', quantity: 10, color: ['Gold',  'Red', "Blue", "Sky Blue", "Violet", "Yellow", "White", "Green", "Pastel Blue", "Pastel Pink", "Pastel Violet", "Pastel Yellow"], type: ["Metallic", "Chrome"], size: ['5"', '6"', '10"', '12"'] },  
 ]
 
 function Products({ className = ''}) {
@@ -25,17 +22,19 @@ function Products({ className = ''}) {
       style={{
          gridArea: 'product-grid',
          gridTemplateColumns: 'repeat(4, 1fr)',
+         gridTemplateRows: 'repeat(2, 1fr)',
+         position: 'relative',
 
 
         }}
       className={`rounded-lg grid gap-4 max-h-[550px] overflow-auto scrollbar-hide ${className}`}
     >
       {productGrid.map((item, index) => (
-        <div key={index} className='flex flex-col items-center justify-center bg-white p-2 rounded-lg opacity-100 hover:opacity-70 transition duration-300 ease-in-out cursor-pointer transform hover:scale-101'>
+        <button key={index} className='flex flex-col items-center justify-center bg-white p-2 rounded-lg opacity-100 hover:opacity-70 transition duration-300 ease-in-out cursor-pointer transform hover:scale-101'>
           <img className='h-55'
            src={item.image} alt="item" />
           <div className='flex flex-col w-full gap-4 '>
-            <p className='text-xl font-bold'>
+            <p className='text-xl text-start font-bold'>
               {item.name}
             </p>
             <div className='flex items-center justify-between px-2'>
@@ -45,7 +44,7 @@ function Products({ className = ''}) {
           </div>
           
           
-        </div>
+        </button>
       ))}
       
     </div>
