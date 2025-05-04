@@ -12,22 +12,22 @@ const navLinks = [
 ];
 
 const lotStock = [
-  { to: "/", image: "/images/Metallic Balloon.png", content: 'Stock for "10\\" UN&UW Metallic Balloon (Green)" is running low! Only 5 items left. Please restock soon!', time: "1 minute ago"},
-  { to: "/", image: "/images/Metallic Balloon.png", content: 'Stock for "10\\" UN&UW Metallic Balloon (Green)" is running low! Only 5 items left. Please restock soon!', time: "1 minute ago"},
+  { to: "/", image: "/images/UN•UW Balloons.png", content: 'Stock for 10" UN&UW Metallic Balloon (Green) is running low! Only 5 items left. Please restock soon!', time: "1 minute ago"},
+  { to: "/", image: "/images/UN•UW Balloons.png", content: 'Stock for 10" UN&UW Metallic Balloon (Green) is running low! Only 5 items left. Please restock soon!', time: "1 minute ago"},
 ];
 
 const noStock = [
-  { to: "/", image: "/images/Metallic Balloon.png", content: 'Stock for "6\\" UN&UW Metallic Balloon (Green)" is out of stock! Please restock immediately.', time: "1 minute ago"},
-  { to: "/", image: "/images/Metallic Balloon.png", content: 'Stock for "6\\" UN&UW Metallic Balloon (Green)" is out of stock! Please restock immediately.', time: "1 minute ago"},
+  { to: "/", image: "/images/UN•UW Balloons.png", content: 'Stock for 6" UN&UW Metallic Balloon (Green) is out of stock! Please restock immediately.', time: "1 minute ago"},
+  { to: "/", image: "/images/UN•UW Balloons.png", content: 'Stock for 6" UN&UW Metallic Balloon (Green) is out of stock! Please restock immediately.', time: "1 minute ago"},
 ];
 
 const subMenuTeams = [
   { profile: "/images/Lhester.jpg", name: "Lhester Tomenio", role: "Owner" },
   { profile: "/images/img-1.jpg", name: "Ruby Journey", role: "Cashier" },
   { profile: "/images/img-2.jpg", name: "Allyza Nebra", role: "Cashier" },
-  { profile: "/images/img-3.jpg", name: "Rena Kane", role: "Manager" },
-  { profile: "/images/img-4.jpg", name: "Hermon Dado", role: "Cashier" },
-  { profile: "/images/img-5.jpg", name: "Jane Doe", role: "Developer" },
+  { profile: "/images/img-4.jpg", name: "Rena Kane", role: "Manager" },
+  { profile: "/images/img-5.jpg", name: "Hermon Dado", role: "Cashier" },
+  { profile: "/images/img-6.jpg", name: "Jane Doe", role: "Developer" },
 ];
 
 const subMenuLinks = [

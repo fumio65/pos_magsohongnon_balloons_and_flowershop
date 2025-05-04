@@ -121,14 +121,14 @@ export default function Carousel() {
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto py-8">
+    <div className="w-full max-w-3xl mx-auto">
       <div
         ref={parentRef}
-        className="bg-white rounded-lg shadow-md overflow-x-auto scrollbar-hide select-none snap-x"
+        className="rounded-lg overflow-x-auto scrollbar-hide select-none snap-x"
         style={{ WebkitOverflowScrolling: "touch" }} // For smoother scrolling on iOS
       >
         <div
-          className="flex gap-5 px-5 py-6"
+          className="flex gap-4 px-5 py-6 "
           style={{ width: CARD_FULL_WIDTH * totalLength }}
         >
           {loopProfiles.map((p, idx) => {
@@ -137,9 +137,9 @@ export default function Carousel() {
             return (
               <div
                 key={idx}
-                className={`profile-card flex-shrink-0 w-52 border border-gray-200 rounded-md p-4 text-center bg-white snap-center ${
+                className={`profile-card flex-shrink-0 w-52 rounded-md text-center snap-center ${
                   isCenterCard
-                    ? "scale-105 shadow-lg transition-transform duration-300 ease-in-out"
+                    ? "scale-110 transition-transform duration-300 ease-in-out"
                     : "transition-transform duration-300 ease-in-out"
                 }`}
                 onClick={() => handleCardClick(idx)}
@@ -148,9 +148,9 @@ export default function Carousel() {
                 <img
                   src={p.imageUrl}
                   alt={p.name}
-                  className="w-20 h-20 rounded-full mx-auto mb-4 object-cover"
+                  className="w-25 h-25 border-4 border-white rounded-full mx-auto mb-4 object-cover"
                 />
-                <div className="font-bold">{p.name}</div>
+                <div className="text-white font-bold">{p.name}</div>
                 <div className="text-sm text-gray-500">{p.role}</div>
               </div>
             );

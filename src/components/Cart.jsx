@@ -99,7 +99,7 @@ function Cart({ className = '' }) {
       >Print Receipt
       </button>
 
-      <button className='border-2 bg-[#1BA672] flex items-center justify-center py-4 text-white text-xl gap-2 rounded-lg hover:opacity-80 transition duration-300 cursor-pointer'>
+      <button className='border-2 bg-button flex items-center justify-center py-4 text-white text-xl gap-2 rounded-lg hover:opacity-80 transition duration-300 cursor-pointer'>
         <img className='h-6'
          src="/icons/pay.svg" alt="wallet" />
         Payment

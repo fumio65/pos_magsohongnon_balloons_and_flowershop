@@ -6,7 +6,7 @@ function InputForm() {
   return (
     <>
 
-      <div className='flex-grow flex-col bg-active rounded-lg w-900'>
+      <div className="flex-grow flex-col bg-[url('/images/background.png')] bg-no-repeat bg-cover rounded-lg w-900">
 
       </div>
 
@@ -21,7 +21,7 @@ function InputForm() {
         <div className='flex flex-col gap-8'>
           <div>
             <h2 className='text-center text-[24px] font-bold'>Login form</h2>
-            <p className="text-[10px] text-side-text">Please enter your login credentials to access the system.</p>
+            <p className="text-center text-[10px] text-side-text">Please enter your login credentials to access the system.</p>
           </div>
           <Input />
         </div>
